@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Halaman Web Interaktif</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .heading {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .text-success {
+      color: green;
+    }
+    .text-danger {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 class="heading" :class="{ 'text-success': isSuccess, 'text-danger': !isSuccess }">{{ message }}</h1>
+    <p :style="{ color: textColor }">Ini adalah sebuah paragraf dengan warna teks yang dapat diubah secara dinamis.</p>
+    <input type="text" v-model="inputText" placeholder="Masukkan teks di sini">
+    <button @click="toggleSuccess">Ubah Status</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Selamat Datang',
+        isSuccess: true,
+        textColor: 'blue',
+        inputText: ''
+      },
+      methods: {
+        toggleSuccess() {
+          this.isSuccess = !this.isSuccess;
+          this.message = this.isSuccess ? 'Berhasil' : 'Gagal';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
